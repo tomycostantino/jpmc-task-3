@@ -23,6 +23,7 @@ from random    import normalvariate, random
 from datetime  import timedelta, datetime
 
 import csv
+import codecs
 import dateutil.parser
 import os.path
 
@@ -141,9 +142,19 @@ def order_book(orders, book, stock_name):
 #
 # Test Data Persistence
 
+"""
+def generate_csv():
+    'Generate a CSV of order history.'
+    with open('test.csv', 'wb') as f:
+        writer = csv.writer(f)
+        for t, stock, side, order, size in orders(market()):
+            if t > MARKET_OPEN + SIM_LENGTH:
+                break
+            writer.writerow([t, stock, side, order, size])
+"""
 def generate_csv():
     """ Generate a CSV of order history. """
-    with open('test.csv', 'wb') as f:
+    with codecs.open('test.csv', 'wb', encoding='utf-8') as f:
         writer = csv.writer(f)
         for t, stock, side, order, size in orders(market()):
             if t > MARKET_OPEN + SIM_LENGTH:
